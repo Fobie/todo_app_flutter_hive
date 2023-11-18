@@ -1,0 +1,15 @@
+const String kMyTasksText = "My Tasks";
+const String kDeletedText = "The task was deleted";
+const String kDoneAllText = "You have done all tasks";
+const String kAddNewText = 'Add New...';
+const String kUpdateText = "Update ";
+const String kTaskText = "Task";
+const String kPlanningText = "What are you planning?";
+const String kAddNoteText = "Add Note";
+const String kTimeNote = "Time";
+const String kDateText = "Date";
+const String kDeleteText = "Delete Task";
+const String kAddTaskText = "Add Task";
+const String kUpdateTaskText = "Update Task";
+const String kErrorText = "Oops";
+const String kConfirmText = "Are you sure?";
