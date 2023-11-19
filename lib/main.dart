@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w300
           ),
           titleSmall: TextStyle(
-            color: Colors.grey,
+            color: Colors.black,
             fontWeight: FontWeight.w500
           )
         )
