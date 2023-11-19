@@ -1,7 +1,7 @@
 const String kMyTasksText = "My Tasks";
 const String kDeletedText = "The task was deleted";
 const String kDoneAllText = "You have done all tasks";
-const String kAddNewText = 'Add New...';
+const String kAddNewText = 'Add New Task';
 const String kUpdateText = "Update ";
 const String kTaskText = "Task";
 const String kPlanningText = "What are you planning?";

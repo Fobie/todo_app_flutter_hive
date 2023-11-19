@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:todoapp/pages/home_page.dart';
+import 'package:todoapp/pages/task_view_screen.dart';
 
 void main(){
   runApp(const MyApp());
@@ -10,8 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
+        fontFamily: 'Poppins',
         textTheme: const TextTheme(
           displayLarge: TextStyle(
             color: Colors.black,
