@@ -265,6 +265,7 @@ class _TaskViewScreenState extends State<TaskViewScreen> {
                       },
                       onFieldSubmitted: (String inputTitle) {
                           title = inputTitle;
+
                       },
                     ),
 
