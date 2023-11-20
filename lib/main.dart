@@ -1,10 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todoapp/pages/home_page.dart';
-import 'package:todoapp/pages/task_view_screen.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todoapp/data/hive_data_store.dart';
+import 'package:todoapp/models/task.dart';
+import 'package:todoapp/view/home/home_page.dart';
 
-void main(){
-  runApp(const MyApp());
+Future<void> main() async{
+
+  /// Initial Hive DB
+  await Hive.initFlutter();
+
+  /// Register Hive Adapter
+  Hive.registerAdapter<Task>(TaskAdapter());
+
+  /// Open box
+  var box = await Hive.openBox<Task>("taskBox");
+
+  /// Delete data from previous day
+  // ignore: avoid_function_literals_in_foreach_calls
+  box.values.forEach((task) {
+    if (task.createdAtTime.day != DateTime.now().day) {
+      task.delete();
+    } else {}
+  });
+
+  runApp(BaseWidget(child: const MyApp()));
+}
+
+class BaseWidget extends InheritedWidget {
+  BaseWidget({Key? key, required this.child}) : super(key: key, child: child);
+  final HiveDataStore dataStore = HiveDataStore();
+  final Widget child;
+
+  static BaseWidget of(BuildContext context) {
+    final base = context.dependOnInheritedWidgetOfExactType<BaseWidget>();
+    if (base != null) {
+      return base;
+    } else {
+      throw StateError('Could not find ancestor widget of type BaseWidget');
+    }
+  }
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    return false;
+  }
 }
 
 class MyApp extends StatelessWidget {
