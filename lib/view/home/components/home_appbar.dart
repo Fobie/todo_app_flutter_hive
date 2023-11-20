@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
+import 'package:todoapp/main.dart';
+import 'package:todoapp/const/dimens.dart';
 
 class HomeAppBar extends StatefulWidget {
   const HomeAppBar({super.key, required this.dKey});
@@ -43,6 +45,9 @@ class _HomeAppBarState extends State<HomeAppBar> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
+
+    var base = BaseWidget.of(context).dataStore;
+
     return SizedBox(
       width: double.infinity,
       height: 120,
@@ -60,7 +65,9 @@ class _HomeAppBarState extends State<HomeAppBar> with SingleTickerProviderStateM
                 )
             ),
             IconButton(
-                onPressed: (){},
+                onPressed: (){
+                  base.box.isNotEmpty ? deleteAllTask(context) : warningNoTask(context);
+                },
                 icon: Icon(
                     Icons.delete_forever,
                     size:30

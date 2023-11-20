@@ -5,11 +5,13 @@ class TimePickerField extends StatelessWidget {
   const TimePickerField({
     super.key,
     required this.onTap,
-    required this.title
+    required this.title,
+    required this.time
   });
 
   final VoidCallback onTap;
   final String title;
+  final String time;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +34,8 @@ class TimePickerField extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                title,
-                style: Theme.of(context).textTheme.headlineSmall,
+                time,
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: kBlackColor),
               ),
             ),
             Padding(

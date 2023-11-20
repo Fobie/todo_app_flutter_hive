@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todoapp/const/colors.dart';
 import 'package:intl/intl.dart';
 import 'package:todoapp/models/task.dart';
+import 'package:get/get.dart';
+import 'package:todoapp/view/tasks/task_view_screen.dart';
 
 class TaskWidget extends StatefulWidget {
   const TaskWidget({
@@ -37,7 +39,11 @@ class _TaskWidgetState extends State<TaskWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-
+        Get.to(TaskViewScreen(
+            titleTaskController: textEditingControllerForTitle,
+            descriptionTaskController: textEditingControllerForSubtitle,
+            task: widget.task)
+        );
       },
       child: AnimatedContainer(
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -47,11 +53,13 @@ class _TaskWidgetState extends State<TaskWidget> {
             border: widget.task.isCompleted ? null : Border.all()
         ),
         duration: const Duration(milliseconds: 600),
-        child: GestureDetector(
-          onTap: (){
-          },
-          child: ListTile(
-            leading: AnimatedContainer(
+        child: ListTile(
+          leading: GestureDetector(
+            onTap: (){
+              widget.task.isCompleted = !widget.task.isCompleted;
+              widget.task.save();
+            },
+            child: AnimatedContainer(
               duration:const Duration(milliseconds: 600),
               decoration: BoxDecoration(
                   color: widget.task.isCompleted ? kPrimaryColor : kWhiteColor,
@@ -60,56 +68,56 @@ class _TaskWidgetState extends State<TaskWidget> {
               ),
               child: Icon(Icons.check, color: kWhiteColor),
             ),
-            title: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Text(
-              textEditingControllerForTitle.text,
-              style: TextStyle(
-              color: widget.task.isCompleted ? kPrimaryColor : kBlackColor,
-              fontWeight: FontWeight.w500,
-              decoration: widget.task.isCompleted ? TextDecoration.lineThrough : null
-              ),
+          ),
+          title: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Text(
+            textEditingControllerForTitle.text,
+            style: TextStyle(
+            color: widget.task.isCompleted ? kPrimaryColor : kBlackColor,
+            fontWeight: FontWeight.w500,
+            decoration: widget.task.isCompleted ? TextDecoration.lineThrough : null
             ),
           ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                textEditingControllerForSubtitle.text,
-                style: TextStyle(
-                    color: widget.task.isCompleted ? kPrimaryColor : kBlackColor,
-                    fontWeight: FontWeight.w300,
-                    decoration: widget.task.isCompleted ? TextDecoration.lineThrough : null
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              textEditingControllerForSubtitle.text,
+              style: TextStyle(
+                  color: widget.task.isCompleted ? kPrimaryColor : kBlackColor,
+                  fontWeight: FontWeight.w300,
+                  decoration: widget.task.isCompleted ? TextDecoration.lineThrough : null
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Text(
+                      DateFormat("hh:mm a").format(widget.task.createdAtTime),
+                      style: TextStyle(
+                          fontSize: 12,
+                          color: widget.task.isCompleted ? kBlackColor : kGreyColor
+                      ),
+                    ),
+                    Text(
+                      DateFormat.yMMMEd().format(widget.task.createdAtDate),
+                      style: TextStyle(
+                          fontSize: 12,
+                          color: widget.task.isCompleted ? kBlackColor : kGreyColor
+                      ),
+                    )
+                  ],
                 ),
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        DateFormat("hh:mm a").format(widget.task.createdAtTime),
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: widget.task.isCompleted ? kBlackColor : kGreyColor
-                        ),
-                      ),
-                      Text(
-                        DateFormat.yMMMEd().format(widget.task.createdAtDate),
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: widget.task.isCompleted ? kBlackColor : kGreyColor
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
-      ),
+        ),
     )
     );
   }

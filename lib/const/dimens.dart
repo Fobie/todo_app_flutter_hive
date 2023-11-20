@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ftoast/ftoast.dart';
+import 'package:get/get.dart';
 import 'package:todoapp/const/strings.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
+import 'package:todoapp/main.dart';
 
 
 /// Widget const
@@ -38,6 +40,7 @@ dynamic warningNoTask(BuildContext context) {
     "There is no Task For Delete!\n Try adding some and then try to delete it!",
     buttonText: "Okay",
     onTapDismiss: () {
+      Get.back();
     },
     panaraDialogType: PanaraDialogType.warning,
   );
@@ -53,8 +56,11 @@ dynamic deleteAllTask(BuildContext context) {
     confirmButtonText: "Yes",
     cancelButtonText: "No",
     onTapCancel: () {
+      Get.back();
     },
     onTapConfirm: () {
+      BaseWidget.of(context).dataStore.box.clear();
+      Get.back();
     },
     panaraDialogType: PanaraDialogType.error,
     barrierDismissible: false,
