@@ -43,7 +43,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     final base = BaseWidget.of(context);
+
     return ValueListenableBuilder(
         valueListenable: base.dataStore.listenToTask(),
         builder: (ctx, Box<Task> box, Widget? child){
@@ -68,7 +70,7 @@ class _HomePageState extends State<HomePage> {
             //  floating button
             floatingActionButton: FloatingActionButtonItemView(),
           );
-        }
+    }
     );
   }
 
@@ -140,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                         return Dismissible(
                             direction: DismissDirection.horizontal,
                             onDismissed: (_){
-                              base.dataStore.daleteTask(task: task);
+                              base.dataStore.deleteTask(task: task);
                             },
                             key: Key(
                                 task.id
@@ -160,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                                 )
                               ],
                             ),
-                            child: TaskWidget(task: task,)
+                            child: TaskWidget(task: task)
                         );
                       }) :  Column(
                     mainAxisAlignment: MainAxisAlignment.center,

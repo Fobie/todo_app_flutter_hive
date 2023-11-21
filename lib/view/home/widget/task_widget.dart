@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:todoapp/const/colors.dart';
 import 'package:intl/intl.dart';
 import 'package:todoapp/models/task.dart';
-import 'package:get/get.dart';
 import 'package:todoapp/view/tasks/task_view_screen.dart';
 
 class TaskWidget extends StatefulWidget {
@@ -42,9 +42,9 @@ class _TaskWidgetState extends State<TaskWidget> {
         Get.to(TaskViewScreen(
             titleTaskController: textEditingControllerForTitle,
             descriptionTaskController: textEditingControllerForSubtitle,
-            task: widget.task)
-        );
+            task: widget.task));
       },
+
       child: AnimatedContainer(
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         decoration: BoxDecoration(

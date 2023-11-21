@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ftoast/ftoast.dart';
 import 'package:get/get.dart';
-import 'package:todoapp/const/strings.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
+import 'package:todoapp/const/strings.dart';
 import 'package:todoapp/main.dart';
 
 
 /// Widget const
 /// Empty Title & Subtite TextFields Warning
-emptyFieldsWarning(context) {
+dynamic emptyFieldsWarning(context) {
   return FToast.toast(
     context,
     msg: kErrorText,
@@ -20,7 +20,7 @@ emptyFieldsWarning(context) {
 }
 
 /// Nothing Enter When user try to edit the current tesk
-nothingEnterOnUpdateTaskMode(context) {
+dynamic nothingEnterOnUpdateTaskMode(context) {
   return FToast.toast(
     context,
     msg: kErrorText,

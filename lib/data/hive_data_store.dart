@@ -24,7 +24,7 @@ class HiveDataStore {
   }
 
   /// Delete task                 ***  D  ***
-  Future<void> daleteTask({required Task task}) async {
+  Future<void> deleteTask({required Task task}) async {
     await task.delete();
   }
 

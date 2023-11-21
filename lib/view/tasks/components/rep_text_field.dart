@@ -6,13 +6,15 @@ class RepTextField extends StatelessWidget {
   const RepTextField({
     super.key,
     required this.controller,
-    this.isForDescriptions = false, this.onChanged, this.onFieldSubmitted,
+    this.isForDescriptions = false,
+    required this.onChanged,
+    required this.onFieldSubmiited,
   });
 
   final TextEditingController? controller;
-  final bool isForDescriptions;
   final Function(String)? onChanged;
-  final Function(String)? onFieldSubmitted;
+  final Function(String)? onFieldSubmiited;
+  final bool isForDescriptions;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +29,8 @@ class RepTextField extends StatelessWidget {
           style: TextStyle(
               color: kBlackColor
           ),
-          onFieldSubmitted: (value){},
-          onChanged: (value){},
+          onFieldSubmitted: onFieldSubmiited,
+          onChanged: onChanged,
           decoration: InputDecoration(
               hintText: isForDescriptions ? kAddNoteText : "Enter Your Task",
               prefixIcon: isForDescriptions ? null : Icon(Icons.task)
